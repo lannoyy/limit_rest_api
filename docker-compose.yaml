@@ -1,0 +1,41 @@
+version: '3.2'
+
+services:
+  server:
+    build: ./server
+    tty: true
+    volumes:
+      -  ./server:/app/server
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+
+  db:
+    container_name: aiohttp_db
+    image: "postgres:12"
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+    volumes:
+      - "dbdata:/app/db"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+
+volumes:
+  dbdata:

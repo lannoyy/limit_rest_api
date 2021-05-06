@@ -1,0 +1,7 @@
+aiohttp[speedups]==3.7.4
+sqlalchemy==1.4.12
+alembic==1.5.8
+psycopg2-binary==2.8.5
+aiopg[sa]==1.2.1
+requests==2.25.1
+pytest==6.2.4
