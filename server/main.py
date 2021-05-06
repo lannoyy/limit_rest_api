@@ -43,10 +43,16 @@ async def limits_create(request):
         limit = Limit(**content)
         session.add(limit)
         session.commit()
-    except (AttributeError, TypeError) :
-        return web.json_response(data={'error': 'invalid body'}, status=400)
+    except (AttributeError, TypeError):
+        return web.json_response(
+            data={'error': 'invalid body'},
+            status=400
+        )
     except IntegrityError:
-        return web.json_response(data={'error': 'object with this user id exists'}, status=400)
+        return web.json_response(
+            data={'error': 'object with this user id exists'},
+            status=400
+        )
     return web.json_response(data=limit.serialize)
 
 
@@ -59,9 +65,15 @@ async def transaction_create(request):
         session.add(transaction)
         session.commit()
     except (AttributeError, TypeError):
-        return web.json_response(data={'error': 'invalid body'}, status=400)
+        return web.json_response(
+            data={'error': 'invalid body'},
+            status=400
+        )
     except ValueError:
-        return web.json_response(data={'error': 'unavailable amount'}, status=400)
+        return web.json_response(
+            data={'error': 'unavailable amount'},
+            status=400
+        )
     return web.json_response(data=transaction.serialize)
 
 
@@ -79,7 +91,10 @@ async def transaction_update(request):
     except (AttributeError, TypeError):
         return web.json_response(data={'error': 'invalid body'}, status=400)
     except ValueError:
-        return web.json_response(data={'error': 'unavailable amount'}, status=400)
+        return web.json_response(
+            data={'error': 'unavailable amount'},
+            status=400
+        )
     return web.json_response(data=obj.serialize)
 
 

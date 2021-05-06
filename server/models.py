@@ -82,7 +82,10 @@ class Limit(Base):
             output.append(item.serialize)
         return output
 
-    def check_for_additional_transaction(self, month: int, year: int, amount: int):
+    def check_for_additional_transaction(
+            self, month: int,
+            year: int, amount: int
+    ):
         """
         Accept month, year and amount,
         and return bool value,
