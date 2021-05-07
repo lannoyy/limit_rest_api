@@ -28,7 +28,7 @@ async def limit_view(request):
     if not obj:
         return web.json_response(data={'error': 'not found'}, status=404)
     data = []
-    if year and month:
+    if year and month and type(year)==int and type(month)==int:
         data = obj.check_for_transactions(year=year, month=month)
     obj = obj.serialize
     obj['transactions'] = data
